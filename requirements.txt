@@ -1,5 +1,7 @@
 Flask==2.1.2
 Flask-Cors==3.0.10
-spacy==3.1.3
+spacy==3.7
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0.tar.gz  # Certifique-se de que a versão do modelo corresponde à versão do spaCy
 numpy
 scipy
+Werkzeug==2.0.0
