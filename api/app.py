@@ -8,8 +8,6 @@ CORS(app, origins='*')
 nlp = spacy.load("en_core_web_sm")
 
 def k_means(data, k):
-    if len(data) < k:
-        raise ValueError("Número de clusters solicitado (k) é maior que o número de pontos de dados disponíveis.")
     centroids = data[np.random.choice(range(len(data)), k, replace=False)]
     while True:
         clusters = [[] for _ in range(k)]
@@ -17,7 +15,7 @@ def k_means(data, k):
             distances = [np.linalg.norm(datapoint - centroid) for centroid in centroids]
             closest_centroid = np.argmin(distances)
             clusters[closest_centroid].append(datapoint)
-        new_centroids = [np.mean(cluster, axis=0) for cluster in clusters]
+        new_centroids = np.array([np.mean(cluster, axis=0) for cluster in clusters if cluster])  # adiciona verificação se cluster não está vazio
         if np.array_equal(centroids, new_centroids):
             break
         centroids = new_centroids
