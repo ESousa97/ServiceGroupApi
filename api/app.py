@@ -16,7 +16,7 @@ def k_means(data, k):
             closest_centroid = np.argmin(distances)
             clusters[closest_centroid].append(datapoint)
         new_centroids = np.array([np.mean(cluster, axis=0) for cluster in clusters if cluster])  # adiciona verificação se cluster não está vazio
-        if np.array_equal(centroids, new_centroids):
+        if np.allclose(centroids, new_centroids):
             break
         centroids = new_centroids
     return centroids, clusters
